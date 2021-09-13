@@ -1,0 +1,68 @@
+<!Doctype html>
+<html>
+<head>
+    <title></title>
+	<style>
+		body{font-size:12px;text-align:center;}
+
+	</style>
+</head>
+<body>
+<script type="text/javascript">
+var numer = Math.floor(Math.random()*5)+1;
+var czyszary=0;
+	function zaladujobr(){
+		numer++;
+		console.log("Aktualny numer zdjęcia"+numer);
+		if(numer>5)numer=1;
+		var plik='<img src="cat'+numer+'.jpg"/>';
+		document.getElementById('zdjecie').innerHTML=plik;
+		timer=setTimeout("zaladujobr()",1000);
+		}
+	function zatrzymaj(){
+		clearTimeout(timer);
+		}
+	function reset()
+		{
+		document.getElementById("zdjecie").innerHTML="";
+		var numer = Math.floor(Math.random()*3)+1;
+		}
+	function szary(){
+		if(czyszary!=1) {
+			zdjecie.style.filter ="grayscale(100%)"; czyszary=1;
+			document.getElementById('szary').innerHTML="Wyłącz szkalę szarości";
+			}
+		else {
+			zdjecie.style.filter ="grayscale(0%)"; czyszary=0;
+			document.getElementById('szary').innerHTML="Włącz szkalę szarości";
+			}
+	}
+	function wyswietl(tekstid,kolor){
+		document.getElementById(tekstid).style.color=kolor;
+	}
+	function wybierz(){
+		var wybkolor=document.getElementById("inputid").value;
+		wyswietl('text',wybkolor);
+	}
+	function wyswietltlo(kolor2){
+		document.bgColor=kolor2;
+	}
+	function wybierztlo(){
+		var kolortlo=document.getElementById("tloid").value;
+		wyswietltlo(kolortlo);
+	}
+</script>
+    <div id="glowny">
+		<p id="text" style="font-size: 30px;">Tekst</p>
+        <button onclick="zaladujobr()">Start</button><br/>
+        <button onclick="zatrzymaj()">Stop</button><br/>
+        <button onclick="reset()">Reset</button><br/>
+		Podaj kolor:<input type="text" placeholder="Tu wpisz kolor" id="inputid">
+        <button onclick="wybierz()">wybierz</button><br/>
+		Podaj kolor tla:<input type="text" placeholder="Tu wpisz kolor tla" id="tloid">
+        <button onclick="wybierztlo()">wybierz</button><br/>
+        <button id="szary" onclick="szary()">Włącz skalę odcieni szarości</button><br/>
+        <div id="zdjecie"></div>
+    </div>
+</body>
+</html>
